@@ -1,2 +1,2 @@
-upstream a line one
+locally maintained first line
 upstream stable line two
