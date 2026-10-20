@@ -44,7 +44,7 @@ def verify(source, auditor):
         objects = git("rev-list", "--objects", "--all")
         sizes = subprocess.check_output(["git", "-C", str(repo), "cat-file",
                                          "--batch-check=%(objectname) %(objecttype) %(objectsize)"],
-                                        input=objects.encode()).decode()
+                                        input=("\n".join(line.split(" ", 1)[0] for line in objects.splitlines()) + "\n").encode()).decode()
         large_ids = set()
         for line in sizes.splitlines():
             oid, kind, size = line.split()

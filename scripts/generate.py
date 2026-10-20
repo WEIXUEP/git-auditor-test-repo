@@ -2,7 +2,6 @@
 
 import argparse
 from datetime import datetime, timedelta, timezone
-import hashlib
 import io
 import json
 import os
@@ -115,7 +114,10 @@ def generate(destination, base_date="2026-10-20", seed=24762):
         shutil.copyfile(Path(__file__).parent / name, root / "scripts" / name)
     (root / ".gitignore").write_text("__pycache__/\n*.pyc\nreports/\n", encoding="utf-8")
     (root / ".gitattributes").write_text("* -text\n", encoding="utf-8")
-    shutil.copyfile(Path(__file__).parent / "README.md", root / "README.md")
+    guide = Path(__file__).parent / "README.md"
+    if not guide.is_file():
+        guide = Path(__file__).parent.parent / "README.md"
+    shutil.copyfile(guide, root / "README.md")
     initial = commit("Initialize documented reproducible audit fixture", 0)
     saved = None
     for step in range(1, 90):
