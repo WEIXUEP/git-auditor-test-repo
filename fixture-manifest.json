@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "base_date": "2026-10-20",
+  "seed": 24762,
+  "audit": {
+    "min_size_mb": 5,
+    "min_age_days": 180
+  },
+  "objects": [
+    {
+      "sha": "a9b08641292d9823471469008ac7e2389659fa30",
+      "paths": [
+        "models/model.bin"
+      ],
+      "scenario": "model_version_2",
+      "size_bytes": 10485760,
+      "expected_status": "OLD_VERSION"
+    },
+    {
+      "sha": "04b12ca5973ef1fe36eb3947184f8754c5245b65",
+      "paths": [
+        "models/model.bin"
+      ],
+      "scenario": "model_version_5",
+      "size_bytes": 10485760,
+      "expected_status": "OLD_VERSION"
+    },
+    {
+      "sha": "b040053b974a781913df257e39ced1a84b8a3769",
+      "paths": [
+        "models/model.bin"
+      ],
+      "scenario": "model_version_8",
+      "size_bytes": 10485760,
+      "expected_status": "CURRENT"
+    },
+    {
+      "sha": "1604d4c9eb3369c79361c841d8eb9592f375a03a",
+      "paths": [
+        "archives/deleted.zip"
+      ],
+      "scenario": "deleted_zip",
+      "size_bytes": 10485900,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "22a5b92c1edca1ab8bc600a51825304428f65627",
+      "paths": [
+        "src/legacy.py"
+      ],
+      "scenario": "deleted_py",
+      "size_bytes": 8388938,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "da8fff3efdc153e379d21aa5548cb41dfc733a24",
+      "paths": [
+        "src/legacy.cpp"
+      ],
+      "scenario": "deleted_cpp",
+      "size_bytes": 8388687,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "7697c98ba6a4a2ce95f34f136792a5afc927111b",
+      "paths": [
+        "src/legacy.js"
+      ],
+      "scenario": "deleted_js",
+      "size_bytes": 8388687,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "973bff8159493684257f2e7dc8a2ba1da1431b22",
+      "paths": [
+        "docs/legacy.md"
+      ],
+      "scenario": "deleted_md",
+      "size_bytes": 8388638,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "6509c90a2612d785beb014a87c81b54c33638f65",
+      "paths": [
+        "docs/legacy.txt"
+      ],
+      "scenario": "deleted_txt",
+      "size_bytes": 8388866,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "d5fb912effd526de0e23e1cae67c175c569a1892",
+      "paths": [
+        "data/legacy.csv"
+      ],
+      "scenario": "deleted_csv",
+      "size_bytes": 8388680,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "8109aa4c5debb5aaf29695e2b57e31d236866f51",
+      "paths": [
+        "data/legacy.json"
+      ],
+      "scenario": "deleted_json",
+      "size_bytes": 8388711,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "e16c8999c9476e7f70b35d96becd2213c729df1e",
+      "paths": [
+        "data/legacy.yaml"
+      ],
+      "scenario": "deleted_yaml",
+      "size_bytes": 8388866,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "5e638bf0b9db1aed294fe147b4cb0adc57c02591",
+      "paths": [
+        "logs/legacy.log"
+      ],
+      "scenario": "deleted_log",
+      "size_bytes": 8388842,
+      "expected_status": "DELETED_PATH"
+    },
+    {
+      "sha": "572d17040450121c096975e984417a4a1a5676f7",
+      "paths": [
+        "images/old.png",
+        "assets/renamed.png"
+      ],
+      "scenario": "renamed_and_moved_current",
+      "size_bytes": 8396688,
+      "expected_status": "CURRENT"
+    },
+    {
+      "sha": "70fafc7a713aa56ce49ac163565f2e4b223fd9e7",
+      "paths": [
+        "transitions/growing.bin"
+      ],
+      "scenario": "small_to_large_current",
+      "size_bytes": 10485760,
+      "expected_status": "CURRENT"
+    },
+    {
+      "sha": "0a1eb6f8cf28a0c7632717986af0a99aebb3cf0d",
+      "paths": [
+        "transitions/shrinking.bin"
+      ],
+      "scenario": "large_to_small",
+      "size_bytes": 10485760,
+      "expected_status": "OLD_VERSION"
+    },
+    {
+      "sha": "5ecbd06335c0128a8b1c253300335e2afcbac3ab",
+      "paths": [
+        "restored/original.bin",
+        "shared/copy.bin"
+      ],
+      "scenario": "delete_restore_original_current",
+      "size_bytes": 10485760,
+      "expected_status": "CURRENT"
+    },
+    {
+      "sha": "f022bf863bcc3140de3d407b09bb6c6836874659",
+      "paths": [
+        "branch/retained.bin"
+      ],
+      "scenario": "unmerged_branch_current",
+      "size_bytes": 10485760,
+      "expected_status": "CURRENT"
+    },
+    {
+      "sha": "edf5f78db205f5a35a0f9b137acb06fa415c3862",
+      "paths": [
+        "release/tagged.bin"
+      ],
+      "scenario": "tag_only_current",
+      "size_bytes": 10485760,
+      "expected_status": "CURRENT"
+    },
+    {
+      "sha": "5bddec2948438b508480b8f34abf1c204443e9d8",
+      "paths": [
+        "recent/deleted.bin"
+      ],
+      "scenario": "recent_deleted",
+      "size_bytes": 10485760,
+      "expected_status": "TOO_NEW"
+    },
+    {
+      "sha": "192810814535cc7cedf5406b8a3f542e63a435ef",
+      "paths": [
+        "review/upload.bin"
+      ],
+      "scenario": "gerrit_1001_1",
+      "size_bytes": 10485760,
+      "expected_status": "GERRIT_PATCHSET_ONLY"
+    },
+    {
+      "sha": "aa2b0cc2fa5fed4ae4cc2a7625860fce2e155aec",
+      "paths": [
+        "review/upload.bin"
+      ],
+      "scenario": "gerrit_1002_1",
+      "size_bytes": 10485760,
+      "expected_status": "GERRIT_PATCHSET_ONLY"
+    },
+    {
+      "sha": "d0552d9dc4c977b5019366b3e696fe3fd7878814",
+      "paths": [
+        "review/upload.bin"
+      ],
+      "scenario": "gerrit_1002_2",
+      "size_bytes": 10485760,
+      "expected_status": "GERRIT_PATCHSET_ONLY"
+    }
+  ],
+  "gerrit_refs": [
+    {
+      "ref": "refs/changes/01/1001/1",
+      "tag": "fixture-archive/change-1001-ps-1",
+      "commit": "3ab59ce58d0ec049b86ae0a999f232289bd68538"
+    },
+    {
+      "ref": "refs/changes/01/1001/2",
+      "tag": "fixture-archive/change-1001-ps-2",
+      "commit": "2720e9274083c5d3de0e4df7145036cc854357c9"
+    },
+    {
+      "ref": "refs/changes/02/1002/1",
+      "tag": "fixture-archive/change-1002-ps-1",
+      "commit": "d6d5a3a8ab670a75efec509e64b94720e12602d6"
+    },
+    {
+      "ref": "refs/changes/02/1002/2",
+      "tag": "fixture-archive/change-1002-ps-2",
+      "commit": "2a5f878b03a4861b97bf2ed8a26e4c1187c11176"
+    },
+    {
+      "ref": "refs/changes/02/1002/3",
+      "tag": "fixture-archive/change-1002-ps-3",
+      "commit": "5fefd11259079dec7089272969afe1967013a596"
+    }
+  ],
+  "branches": [
+    "main",
+    "feature/unmerged",
+    "feature/merged"
+  ],
+  "release_tags": [
+    "release-lightweight",
+    "release-annotated"
+  ]
+}
