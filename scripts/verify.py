@@ -33,7 +33,8 @@ def verify(source, auditor):
         subprocess.check_call([sys.executable, str(repo / "scripts/restore_gerrit.py"),
                                "--repo", str(repo), "--disposable-clone"])
         count = int(git("rev-list", "--all", "--count"))
-        assert 95 <= count <= 110, f"Unexpected commit count: {count}"
+        expected_count = manifest.get("expected_commit_count")
+        assert count == expected_count if expected_count is not None else 95 <= count <= 110, f"Unexpected commit count: {count}"
         commits = {}
         for line in git("log", "--all", "--format=%H %ct %P").splitlines():
             sha, stamp, *parents = line.split()

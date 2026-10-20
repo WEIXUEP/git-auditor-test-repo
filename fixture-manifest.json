@@ -1,5 +1,6 @@
 {
   "schema_version": 1,
+  "expected_commit_count": 121,
   "base_date": "2026-10-20",
   "seed": 24762,
   "audit": {

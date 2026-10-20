@@ -1,11 +1,12 @@
 # Git / Gerrit long-history audit fixture
 
-Disposable synthetic data for [git_large_object_auditor](https://github.com/WEIXUEP/git_large_object_auditor).
+Disposable synthetic data for [Git History Toolkit](https://github.com/WEIXUEP/git-history-toolkit).
 No production files, secrets or real review metadata are included.
 
 ## History and expected results
 
-Approximately 100 commits span two years. `fixture-manifest.json` records the
+The original 100 commits span two years; the subtree extension adds small-file
+histories on dedicated branches. `fixture-manifest.json` records the
 generation seed, baseline date, blob IDs, sizes, paths, scenarios and expected
 classifications at **5 MiB / 180 days** after restoring Gerrit refs.
 The default baseline is **2026-10-20**. Age classifications in live audits
@@ -80,3 +81,49 @@ git -C disposable-audit-clone remote add local-test ../local-test.git
 All data is synthetic and may be discarded in a disposable clone. Actual
 auditor history cleanup and remote history replacement require separate user
 confirmation. Never use mirror pushes to publish this fixture.
+
+## Squash-subtree migration scenarios
+
+These scenarios extend this same large-object repository. `fixture/subtree`
+contains two real squash imports, local edits by Subtree Alice, an unmerged
+topic branch, a merge commit, and upstream v2 pulls. Mapping:
+`vendor/a` to `components/a`, `vendor/b` to `third_party/deep/b`.
+`fixture/subtree-renamed` additionally contains a historical move from
+`vendor/a` to `vendor/legacy-a`; map both aliases to `components/a`.
+`fixture/subtree-original` provides an unselected reference control.
+
+`fixture-subtree/release` is annotated. The four
+`fixture-subtree/upstream-{a,b}-{v1,v2}` tags retain original upstream objects,
+including the native upstream path `vendor/a/embedded.txt`, which must not
+be rewritten inside the upstream root. These tags differ from Gerrit archives.
+`subtree-fixture.json` on `fixture/subtree` records identities and expectations.
+
+Run the toolkit integration tests against a fresh clone:
+
+```shell
+git clone https://github.com/WEIXUEP/git-auditor-test-repo
+git -C git-auditor-test-repo branch fixture/subtree origin/fixture/subtree
+git -C git-auditor-test-repo branch fixture/subtree-topic origin/fixture/subtree-topic
+git -C git-auditor-test-repo branch fixture/subtree-renamed origin/fixture/subtree-renamed
+# Set GIT_HISTORY_FIXTURE to the clone's absolute path if not beside the toolkit.
+cd git-history-toolkit
+python -m unittest discover -s tests -p test_subtree_migration.py -v
+```
+
+Tests confirm migration only in disposable clones, compare every selected
+commit's tree, identities and topology, check log/blame, perform two synthetic
+upstream increments per selected ref/subtree and test repeated pull idempotency.
+They also verify historical aliases, unchanged unselected refs, cancellation
+and publication leases without publishing rewritten history.
+
+`scripts/add_subtree_scenarios.py` reproduces the extension on a clean base
+fixture that has no `fixture/subtree` refs. It refuses existing destinations:
+
+```shell
+python scripts/add_subtree_scenarios.py --repo /path/to/base-fixture --upstream-workspace /new/path/upstreams
+```
+
+The frozen subtree baseline is 2026-10-20 14:00 UTC. These are actual local
+subtree operations, not a Gerrit service or permission simulation. Extending
+the fixture requires updating expected_commit_count before its next commit;
+large-object classifications and the audit date remain unchanged.

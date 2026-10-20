@@ -110,7 +110,7 @@ def generate(destination, base_date="2026-10-20", seed=24762):
     git("config", "core.autocrlf", "false")
     git("config", "core.hooksPath", ".git/disabled-hooks")
     (root / "scripts").mkdir()
-    for name in ("generate.py", "restore_gerrit.py", "verify.py"):
+    for name in ("generate.py", "restore_gerrit.py", "verify.py", "add_subtree_scenarios.py"):
         shutil.copyfile(Path(__file__).parent / name, root / "scripts" / name)
     (root / ".gitignore").write_text("__pycache__/\n*.pyc\nreports/\n", encoding="utf-8")
     (root / ".gitattributes").write_text("* -text\n", encoding="utf-8")
@@ -211,6 +211,7 @@ def generate(destination, base_date="2026-10-20", seed=24762):
             archives.append({"ref": ref, "tag": tag, "commit": oid})
     git("checkout", "main")
     manifest = {"schema_version": 1, "base_date": base_date, "seed": seed,
+                "expected_commit_count": int(git("rev-list", "--all", "--count")) + 1,
                 "audit": {"min_size_mb": 5, "min_age_days": 180}, "objects": records,
                 "gerrit_refs": archives, "branches": ["main", "feature/unmerged", "feature/merged"],
                 "release_tags": ["release-lightweight", "release-annotated"]}
