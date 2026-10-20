@@ -1,0 +1,27 @@
+{
+  "branch": "fixture/subtree",
+  "topic": "fixture/subtree-topic",
+  "unselected": "fixture/subtree-original",
+  "historical_alias": "fixture/subtree-renamed",
+  "moves": {
+    "vendor/a": "components/a",
+    "vendor/b": "third_party/deep/b"
+  },
+  "alice_commit": "868d94c08a46ba68df148e268be1302d20d98705",
+  "archive_tags": [
+    "fixture-subtree/upstream-a-v1",
+    "fixture-subtree/upstream-a-v2",
+    "fixture-subtree/upstream-b-v1",
+    "fixture-subtree/upstream-b-v2"
+  ],
+  "upstream_commits": {
+    "a": {
+      "v1": "c67aa0bc4efaf53e6ff127dc65a4e0bf72272e0e",
+      "v2": "999ccd565b930bb1c79ad864d8a7b2af996f3042"
+    },
+    "b": {
+      "v1": "d448f052226a494037bf976f98ea2d298e133d99",
+      "v2": "4bd6dce558c65892e8ce9d2b598ac660bf5a8ea5"
+    }
+  }
+}
